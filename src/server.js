@@ -1,14 +1,14 @@
-const express = requrie("express");
+const express = require("express");
 const cors = require("cors");
-const TelegramBot = require("telegram-bot-api");
-
+const TelegramBot = require("node-telegram-bot-api");
+// telegram bot = t.me/blogpostapibot.
+const token = "6026137775:AAF1bSXURKa8vmng_r8lLaO0KntBb3GrI34";
 const app = express();
 
 app.use(cors());
-// must install telegram-bot-api, cors, bcrypt, dotenv, express-async-handler, jsonwebtoken, mongoose,
-// devdependencies nodemon
-const api = new TelegramBot({ token: "My token from bot father" });
-
+const api = new TelegramBot(token, {
+  polling: true,
+});
 api.on("message", (message) => {
   console.log("received messages", message);
 });
