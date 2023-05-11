@@ -1,9 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const TelegramBot = require("node-telegram-bot-api");
 // telegram bot = t.me/blogpostapibot.
-const token = "6026137775:AAF1bSXURKa8vmng_r8lLaO0KntBb3GrI34";
+dotenv.config();
+const token = process.env.TELEGRAM_TOKEN;
 const app = express();
+
+console.log("telegram bot api", token);
 
 app.use(cors());
 const api = new TelegramBot(token, {
