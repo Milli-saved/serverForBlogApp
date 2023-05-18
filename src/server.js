@@ -6,6 +6,7 @@ const TelegramBot = require("node-telegram-bot-api");
 dotenv.config();
 const token = process.env.TELEGRAM_TOKEN;
 const app = express();
+app.use(cors());
 
 let blogs = [
   {
@@ -60,7 +61,6 @@ let blogs = [
 
 console.log("telegram bot api", token);
 
-app.use(cors());
 // const api = new TelegramBot(token, {
 //   polling: true,
 // });
@@ -68,11 +68,11 @@ app.use(cors());
 //   console.log("received messages", message);
 // });
 
-app.use("/").get((req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json(blogs);
 });
 
-app.use("/:id").get((req, res) => {
+app.get("/:id", (req, res) => {
   let id = req.params.id;
   let selectedBlog = blogs.map((eachBlog) => {
     if (eachBlog.id === id) {
@@ -82,6 +82,6 @@ app.use("/:id").get((req, res) => {
   res.status(200).json(selectedBlog);
 });
 
-app.listen(3000, () => {
-  console.log("Port started at 3000");
+app.listen(3005, () => {
+  console.log("Port started at 3005");
 });
