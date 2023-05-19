@@ -84,12 +84,11 @@ app.get("/all", (req, res) => {
 
 app.get("/:id", (req, res) => {
   let id = req.params.id;
-  let selectedBlog = blogs.map((eachBlog) => {
-    if (eachBlog.id === id) {
-      return eachBlog;
-    }
-  });
-  res.status(200).json(selectedBlog);
+  console.log(req.params.id);
+  let blogIndex = blogs.findIndex((eachBlog) => eachBlog.id == id);
+
+  console.log("selected blog", blogIndex);
+  res.status(200).json(blogs[blogIndex]);
 });
 
 app.listen(port, () => {
