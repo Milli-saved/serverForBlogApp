@@ -4,8 +4,11 @@ const cors = require("cors");
 // const TelegramBot = require("node-telegram-bot-api");
 // telegram bot = t.me/blogpostapibot.
 dotenv.config();
-const token = process.env.TELEGRAM_TOKEN;
+// const token = process.env.TELEGRAM_TOKEN;
 const app = express();
+
+const port = process.env.PORT || 3008;
+
 app.use(cors());
 
 let blogs = [
@@ -88,6 +91,6 @@ app.get("/:id", (req, res) => {
   res.status(200).json(selectedBlog);
 });
 
-app.listen(3005, () => {
-  console.log("Port started at 3005");
+app.listen(port, () => {
+  console.log(`Port started at ${port}`);
 });
