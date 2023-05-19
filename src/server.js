@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
-const TelegramBot = require("node-telegram-bot-api");
+// const dotenv = require("dotenv");
+// const TelegramBot = require("node-telegram-bot-api");
 // telegram bot = t.me/blogpostapibot.
 dotenv.config();
 const token = process.env.TELEGRAM_TOKEN;
@@ -59,20 +59,20 @@ let blogs = [
   },
 ];
 
-console.log("telegram bot api", token);
+// console.log("telegram bot api", token);
 
-const api = new TelegramBot(token, { polling: true });
+// const api = new TelegramBot(token, { polling: true });
 
-api.onText(/\/exho(.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  const resp = match[1];
+// api.onText(/\/exho(.+)/, (msg, match) => {
+//   const chatId = msg.chat.id;
+//   const resp = match[1];
 
-  api.sendMessage(chatId, resp);
-});
+//   api.sendMessage(chatId, resp);
+// });
 
-api.on("message", (message) => {
-  console.log("received messages", message);
-});
+// api.on("message", (message) => {
+//   console.log("received messages", message);
+// });
 
 app.get("/all", (req, res) => {
   res.status(200).json(blogs);
