@@ -15,7 +15,7 @@ app.use(cors());
 let blogs = [
   {
     id: 1,
-    postTitle: "This is the title.",
+    postTitle: "እውነቱን ማወቅ፣ ግን.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -23,7 +23,7 @@ let blogs = [
   },
   {
     id: 2,
-    postTitle: "This is the title.",
+    postTitle: "ልብ መግዛት.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -31,7 +31,7 @@ let blogs = [
   },
   {
     id: 3,
-    postTitle: "This is the title.",
+    postTitle: "መልካም እድል.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -39,7 +39,7 @@ let blogs = [
   },
   {
     id: 4,
-    postTitle: "This is the title.",
+    postTitle: "ቁጣህን ተቆጣጠር.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -47,7 +47,7 @@ let blogs = [
   },
   {
     id: 5,
-    postTitle: "This is the title.",
+    postTitle: "እምነት.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -55,7 +55,39 @@ let blogs = [
   },
   {
     id: 6,
-    postTitle: "This is the title.",
+    postTitle: "የተመሰቃቀለ ህይወት.",
+    postSubtitle:
+      "This is the subtitle which contains the best part of the blog.",
+    postedBy: "Akrem Hussen",
+    postDate: "on July 8, 2023",
+  },
+  {
+    id: 7,
+    postTitle: "የበረዶ ግግር ጫፍ.",
+    postSubtitle:
+      "This is the subtitle which contains the best part of the blog.",
+    postedBy: "Akrem Hussen",
+    postDate: "on July 8, 2023",
+  },
+  {
+    id: 8,
+    postTitle: "መተውን ተማሩ.",
+    postSubtitle:
+      "This is the subtitle which contains the best part of the blog.",
+    postedBy: "Akrem Hussen",
+    postDate: "on July 8, 2023",
+  },
+  {
+    id: 9,
+    postTitle: "ቃልህን ጠብቅ.",
+    postSubtitle:
+      "This is the subtitle which contains the best part of the blog.",
+    postedBy: "Akrem Hussen",
+    postDate: "on July 8, 2023",
+  },
+  {
+    id: 10,
+    postTitle: "በጨዎነት መልሱ.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
     postedBy: "Akrem Hussen",
@@ -84,10 +116,7 @@ app.get("/all", (req, res) => {
 
 app.get("/:id", (req, res) => {
   let id = req.params.id;
-  console.log(req.params.id);
   let blogIndex = blogs.findIndex((eachBlog) => eachBlog.id == id);
-
-  console.log("selected blog", blogIndex);
   res.status(200).json(blogs[blogIndex]);
 });
 
