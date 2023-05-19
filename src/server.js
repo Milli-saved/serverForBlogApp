@@ -61,14 +61,20 @@ let blogs = [
 
 console.log("telegram bot api", token);
 
-// const api = new TelegramBot(token, {
-//   polling: true,
-// });
-// api.on("message", (message) => {
-//   console.log("received messages", message);
-// });
+const api = new TelegramBot(token, { polling: true });
 
-app.get("/", (req, res) => {
+api.onText(/\/exho(.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+
+  api.sendMessage(chatId, resp);
+});
+
+api.on("message", (message) => {
+  console.log("received messages", message);
+});
+
+app.get("/all", (req, res) => {
   res.status(200).json(blogs);
 });
 
