@@ -18,7 +18,7 @@ let blogs = [
     postTitle: "እውነቱን ማወቅ፣ ግን.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -26,7 +26,7 @@ let blogs = [
     postTitle: "ልብ መግዛት.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -34,7 +34,7 @@ let blogs = [
     postTitle: "መልካም እድል.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -42,7 +42,7 @@ let blogs = [
     postTitle: "ቁጣህን ተቆጣጠር.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -50,7 +50,7 @@ let blogs = [
     postTitle: "እምነት.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -58,7 +58,7 @@ let blogs = [
     postTitle: "የተመሰቃቀለ ህይወት.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -66,7 +66,7 @@ let blogs = [
     postTitle: "የበረዶ ግግር ጫፍ.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -74,7 +74,7 @@ let blogs = [
     postTitle: "መተውን ተማሩ.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -82,7 +82,7 @@ let blogs = [
     postTitle: "ቃልህን ጠብቅ.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
   {
@@ -90,7 +90,7 @@ let blogs = [
     postTitle: "በጨዎነት መልሱ.",
     postSubtitle:
       "This is the subtitle which contains the best part of the blog.",
-    postedBy: "Akrem Hussen",
+    postedBy: "Tenkir Teni",
     postDate: "on July 8, 2023",
   },
 ];
