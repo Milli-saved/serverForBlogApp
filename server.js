@@ -12,7 +12,7 @@ app.use(cors());
 const port = process.env.PORT || 3008;
 const token = process.env.TELEGRAM_TOKEN;
 
-const API = new TelegramBot(token, { polling: true });
+const api = new TelegramBot(token, { polling: true });
 
 let blogs = [
   {
@@ -99,7 +99,28 @@ let blogs = [
 
 let newlyAddedFile = "";
 
+api.on("audio", async (msg) => {
+  try {
+    const chatId = msg.chat.id;
+    const audioFile = await api.getFile(msg.audio.file_id);
+    const filePath = await api.downloadFile(audioFile.file_id, "./audio");
+    fs.renameSync(`${filePath}`, `./audio/${msg.audio.file_name}`);
+    newlyAddedFile = `${msg.audio.file_name}`;
+    return api.sendMessage(chatId, "File recieved");
+  } catch (err) {
+    console.log("Some error occured: ", err);
+  }
+});
 
+app.get("/audio", (req, res) => {
+  // console.log("The new file: ", newlyAddedFile);
+  if (!newlyAddedFile) {
+    
+  }
+  const audioBuffer = fs.readFileSync(`./audio/${newlyAddedFile}`);
+  res.set("Content-Type", "audio/mpeg");
+  res.send(audioBuffer);
+});
 
 app.get("/all", (req, res) => {
   res.status(200).json(blogs);
