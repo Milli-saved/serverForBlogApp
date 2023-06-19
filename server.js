@@ -115,7 +115,8 @@ api.on("audio", async (msg) => {
 app.get("/audio", (req, res) => {
   // console.log("The new file: ", newlyAddedFile);
   if (!newlyAddedFile) {
-    
+    res.status(400);
+    throw new Error("No new audio added.");
   }
   const audioBuffer = fs.readFileSync(`./audio/${newlyAddedFile}`);
   res.set("Content-Type", "audio/mpeg");
