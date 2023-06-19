@@ -1,17 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const fs = require("fs")
-const path = require("path")
-const TelegramBot = require("node")
+const fs = require("fs");
+const path = require("path");
+const TelegramBot = require("node-telegram-bot-api");
 
 dotenv.config();
+
 const app = express();
-
-
-const port = process.env.PORT || 3008;
-
 app.use(cors());
+const port = process.env.PORT || 3008;
+const token = process.env.TELEGRAM_TOKEN;
+
+const API = new TelegramBot(token, { polling: true });
 
 let blogs = [
   {
@@ -95,6 +96,9 @@ let blogs = [
     postDate: "on July 8, 2023",
   },
 ];
+
+let newlyAddedFile = "";
+
 
 
 app.get("/all", (req, res) => {
