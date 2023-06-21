@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 3008;
-const token = process.env.TELEGRAM_TOKEN;
+const token = "6026137775:AAF1bSXURKa8vmng_r8lLaO0KntBb3GrI34";
 
 const api = new TelegramBot(token, { polling: true });
 
