@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
+const archiver = require('archiver')
 const TelegramBot = require("node-telegram-bot-api");
 
 dotenv.config();
@@ -124,6 +125,12 @@ app.get("/audio", (req, res) => {
   //   msg: "the link is this one.",
   // });
 });
+
+app.get("/audio/all", (req, res) => {
+  const output = fs.createWriteStream('audio.zip')
+  const archive = archiver("zip")
+  output.on('close',()=> console.log('ZIP archive created'))
+})
 
 app.get("/all", (req, res) => {
   res.status(200).json(blogs);
