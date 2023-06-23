@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
-const archiver = require('archiver')
+const archiver = require("archiver");
 const TelegramBot = require("node-telegram-bot-api");
 
 dotenv.config();
@@ -127,10 +127,27 @@ app.get("/audio", (req, res) => {
 });
 
 app.get("/audio/all", (req, res) => {
-  const output = fs.createWriteStream('audio.zip')
-  const archive = archiver("zip")
-  output.on('close',()=> console.log('ZIP archive created'))
-})
+  const zipFilePath = path.join(__dirname, "audio.zip");
+  if (zipFilePath) {
+    res.set("Content-Type", "application/zip");
+    res.download("audio.zip");
+  } else {
+    const output = fs.createWriteStream("audio.zip");
+    const archive = archiver("zip");
+    output.on("close", () => console.log("ZIP archive created"));
+    archive.pipe(output);
+
+    fs.readdirSync("audio/").forEach((file) => {
+      const filePath = path.join("audio/", file);
+      if (fs.statSync(filePath).isFile() && path.extname(filePath) === ".mp3") {
+        archive.append(fs.createReadStream(filePath), { name: file });
+      }
+    });
+    archive.finalize();
+    res.set("Content-Type", "application/zip");
+    res.download("audio.zip");
+  }
+});
 
 app.get("/all", (req, res) => {
   res.status(200).json(blogs);
