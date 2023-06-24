@@ -126,7 +126,7 @@ app.get("/audio", (req, res) => {
   // });
 });
 
-app.get("/audio/all", (req, res) => {
+app.get("/audio/all", async (req, res) => {
   const zipFilePath = path.join(__dirname, "../", "audio.zip");
 
   if (fs.existsSync("audio.zip")) {
@@ -136,6 +136,25 @@ app.get("/audio/all", (req, res) => {
       }
       console.log("File deleted.");
     });
+    const output = fs.createWriteStream("audio.zip");
+    const archive = await archiver("zip");
+    output.on("close", () => console.log("ZIP archive created"));
+    archive.pipe(output);
+
+    fs.readdirSync("./audio/").forEach((file) => {
+      const filePath = path.join("audio/", file);
+      if (fs.statSync(filePath).isFile() && path.extname(filePath) === ".mp3") {
+        archive.append(fs.createReadStream(filePath), { name: file });
+      }
+    });
+    archive.finalize();
+    const audioZip = path.join(__dirname, "audio.zip");
+    res.setHeader("Content-Disposition", `attachment; filename=audio.zip`);
+    res.set("Content-Type", "application/zip");
+
+    const fileStream = fs.createReadStream(audioZip);
+    fileStream.pipe(res);
+    // res.download("audio.zip");
   } else {
     const output = fs.createWriteStream("audio.zip");
     const archive = archiver("zip");
