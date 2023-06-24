@@ -127,11 +127,16 @@ app.get("/audio", (req, res) => {
 });
 
 app.get("/audio/all", (req, res) => {
-  const zipFilePath = path.join(__dirname, "audio.zip");
-  if (zipFilePath) {
+  const zipFilePath = path.join(__dirname, "../", "audio.zip");
+  
+  
+  
+  if (zipFilePath.ex) {
+    console.log("IN THE IF", zipFilePath);
     res.set("Content-Type", "application/zip");
     res.download("audio.zip");
   } else {
+    console.log("IN THE ELSE");
     const output = fs.createWriteStream("audio.zip");
     const archive = archiver("zip");
     output.on("close", () => console.log("ZIP archive created"));
