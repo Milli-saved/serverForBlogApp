@@ -128,15 +128,15 @@ app.get("/audio", (req, res) => {
 
 app.get("/audio/all", (req, res) => {
   const zipFilePath = path.join(__dirname, "../", "audio.zip");
-  
-  
-  
-  if (zipFilePath.ex) {
-    console.log("IN THE IF", zipFilePath);
-    res.set("Content-Type", "application/zip");
-    res.download("audio.zip");
+
+  if (fs.existsSync("audio.zip")) {
+    fs.unlink("audio.zip", (err) => {
+      if (err) {
+        console.error(err);
+      }
+      console.log("File deleted.");
+    });
   } else {
-    console.log("IN THE ELSE");
     const output = fs.createWriteStream("audio.zip");
     const archive = archiver("zip");
     output.on("close", () => console.log("ZIP archive created"));
@@ -152,6 +152,28 @@ app.get("/audio/all", (req, res) => {
     res.set("Content-Type", "application/zip");
     res.download("audio.zip");
   }
+
+  // if (zipFilePath.ex) {
+  //   console.log("IN THE IF", zipFilePath);
+  //   res.set("Content-Type", "application/zip");
+  //   res.download("audio.zip");
+  // } else {
+  //   console.log("IN THE ELSE");
+  //   const output = fs.createWriteStream("audio.zip");
+  //   const archive = archiver("zip");
+  //   output.on("close", () => console.log("ZIP archive created"));
+  //   archive.pipe(output);
+
+  //   fs.readdirSync("audio/").forEach((file) => {
+  //     const filePath = path.join("audio/", file);
+  //     if (fs.statSync(filePath).isFile() && path.extname(filePath) === ".mp3") {
+  //       archive.append(fs.createReadStream(filePath), { name: file });
+  //     }
+  //   });
+  //   archive.finalize();
+  //   res.set("Content-Type", "application/zip");
+  //   res.download("audio.zip");
+  // }
 });
 
 app.get("/all", (req, res) => {
