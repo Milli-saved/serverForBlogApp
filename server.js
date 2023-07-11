@@ -100,18 +100,18 @@ let blogs = [
 
 let newlyAddedFile = "";
 
-api.on("audio", async (msg) => {
-  const chatId = msg.chat.id;
-  try {
-    const audioFile = await api.getFile(msg.audio.file_id);
-    const filePath = await api.downloadFile(audioFile.file_id, "./audio");
-    fs.renameSync(`${filePath}`, `./audio/${msg.audio.file_name}`);
-    newlyAddedFile = `${msg.audio.file_name}`;
-    return api.sendMessage(chatId, "File recieved");
-  } catch (err) {
-    return api.sendMessage(chatId, "Not recived.");
-  }
-});
+// api.on("audio", async (msg) => {
+//   const chatId = msg.chat.id;
+//   try {
+//     const audioFile = await api.getFile(msg.audio.file_id);
+//     const filePath = await api.downloadFile(audioFile.file_id, "./audio");
+//     fs.renameSync(`${filePath}`, `./audio/${msg.audio.file_name}`);
+//     newlyAddedFile = `${msg.audio.file_name}`;
+//     return api.sendMessage(chatId, "File recieved");
+//   } catch (err) {
+//     return api.sendMessage(chatId, "Not recived.");
+//   }
+// });
 
 app.get("/audio", (req, res) => {
   console.log("The new file: ", newlyAddedFile);
