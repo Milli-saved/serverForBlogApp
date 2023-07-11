@@ -11,9 +11,9 @@ dotenv.config();
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 3008;
-const token = "6026137775:AAF1bSXURKa8vmng_r8lLaO0KntBb3GrI34";
+// const token = "6026137775:AAF1bSXURKa8vmng_r8lLaO0KntBb3GrI34";
 
-const api = new TelegramBot(token, { polling: true });
+// const api = new TelegramBot(token, { polling: true });
 
 let blogs = [
   {
@@ -113,18 +113,18 @@ let newlyAddedFile = "";
 //   }
 // });
 
-// app.get("/audio", (req, res) => {
-//   console.log("The new file: ", newlyAddedFile);
-//   if (!newlyAddedFile) {
-//     res.status(400).json({ msg: "no new audio added." });
-//   }
-//   const audioBuffer = fs.readFileSync(`./audio/${newlyAddedFile}`);
-//   res.set("Content-Type", "audio/mpeg");
-//   res.send(audioBuffer);
-  // res.status(200).json({
-  //   msg: "the link is this one.",
-  // });
-// });
+app.get("/audio", (req, res) => {
+  console.log("The new file: ", newlyAddedFile);
+  if (!newlyAddedFile) {
+    res.status(400).json({ msg: "no new audio added." });
+  }
+  const audioBuffer = fs.readFileSync(`./audio/${newlyAddedFile}`);
+  res.set("Content-Type", "audio/mpeg");
+  res.send(audioBuffer);
+  res.status(200).json({
+    msg: "the link is this one.",
+  });
+});
 
 // app.get("/audio/all", (req, res) => {
 //   const zipFilePath = path.join(__dirname, "audio.zip");
